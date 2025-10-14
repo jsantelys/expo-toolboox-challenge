@@ -3,7 +3,7 @@
     "name": "expotoolboxChallenge",
     "slug": "expotoolboxChallenge",
     "version": "1.0.0",
-    "orientation": "default",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -29,6 +29,20 @@
         {
           "backgroundColor": "#ffffff",
           "image": "./assets/splash-icon.png"
+        }
+      ],
+      "expo-dev-client",
+      [
+        "expo-video",
+        {
+          "supportsBackgroundAudio": true,
+          "supportsPictureInPicture": true
+        }
+      ],
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "DEFAULT"
         }
       ]
     ]
