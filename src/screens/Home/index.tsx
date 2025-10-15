@@ -1,7 +1,8 @@
-import { Button, Text } from '@react-navigation/elements';
 import { Alert, FlatList, Image, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { generateMockCarousels } from '../utils/mockData';
+import { generateMockCarousels } from '../../utils/mockData';
 import { useNavigation } from '@react-navigation/native';
+import { ThemedText } from '../../components/ThemedText';
+import { ThemedView } from '../../components/ThemedView';
 
 const mockData = generateMockCarousels(8, 50);
 
@@ -9,16 +10,17 @@ const ITEM_HEIGHT = 200;
 
 const renderCarousel = ({ item, onPress }: { item: any, onPress: (item: any) => void }) => {
   return (
-    <View style={styles.carouselContainer}>
-      <Text style={styles.carouselTitle}>{item.title}</Text>
+    <ThemedView style={styles.carouselContainer}>
+      <ThemedText type="title" style={styles.carouselTitle}>{item.title}</ThemedText>
       <FlatList
         data={item.items}
         renderItem={(props) => renderCarouselItem({ ...props, type: item.type, onPress })}
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.carouselContent}
+        initialNumToRender={5}
       />
-    </View>
+    </ThemedView>
   );
 };
 
@@ -27,7 +29,7 @@ const renderCarouselItem = ({ item, type, onPress }: { item: any; type: string, 
 
   return (
     <TouchableOpacity onPress={() => onPress(item)} activeOpacity={0.7} style={styles.carouselItemContainer}>
-      <View style={[
+      <ThemedView style={[
         styles.imageContainer,
         isPoster ? styles.posterImage : styles.thumbImage
       ]}>
@@ -36,10 +38,10 @@ const renderCarouselItem = ({ item, type, onPress }: { item: any; type: string, 
           style={styles.image}
           resizeMode="cover"
         />
-      </View>
-      <Text style={styles.itemTitle} numberOfLines={2}>
+      </ThemedView>
+      <ThemedText type="defaultSemiBold" style={styles.itemTitle} numberOfLines={2}>
         {item.title}
-      </Text>
+      </ThemedText>
     </TouchableOpacity>
   );
 };
@@ -56,6 +58,7 @@ export function Home() {
       videoUrl: item.videoUrl,
       title: item.title,
       description: item.description,
+      imageUrl: item.imageUrl,
     });
   }
 
@@ -85,8 +88,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   carouselTitle: {
-    fontSize: 24,
-    fontWeight: '700',
     marginLeft: 20,
     marginBottom: 16,
     letterSpacing: 0.5,
@@ -123,8 +124,6 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   itemTitle: {
-    fontSize: 14,
-    fontWeight: '500',
     marginTop: 8,
   },
 });

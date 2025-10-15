@@ -13,15 +13,26 @@ interface Carousel {
     items: CarouselItem[];
 }
 
-// ✅ Reliable sample videos (all MP4)
+// ✅ Sample videos with multiple formats
 const videoSamples = [
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4"
+    // MP4 videos
+    { url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", format: "MP4" },
+    { url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", format: "MP4" },
+    { url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4", format: "MP4" },
+    { url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4", format: "MP4" },
+    { url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", format: "MP4" },
+    { url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4", format: "MP4" },
+    { url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4", format: "MP4" },
+    // M3U8 videos (HLS streaming)
+    { url: "https://d11gqohmu80ljn.cloudfront.net/128/media-20210712191955-cbdi-0.m3u8/master.m3u8", format: "M3U8" },
+    // WebM videos
+    { url: "https://dl11.webmfiles.org/big-buck-bunny_trailer-.webm", format: "WebM" },
+    { url: "https://dl6.webmfiles.org/elephants-dream.webm", format: "WebM" },
+    // AVI videos
+    { url: "https://learningcontainer.com/wp-content/uploads/2020/05/sample-avi-file.avi", format: "AVI" },
+    { url: "https://filesamples.com/samples/video/avi/sample_1280x720_surfing_with_audio.avi", format: "AVI" },
+    // MOV videos
+    { url: "https://filesamples.com/samples/video/mov/sample_640x360.mov", format: "MOV" }
 ];
 
 const descriptions = [
@@ -54,18 +65,45 @@ export function generateMockCarousels(
     const types: CarouselType[] = ["thumb", "poster"];
     const carousels: Carousel[] = [];
 
+    // Track how many times each format has been used to create unique titles
+    const formatCounters: { [key: string]: number } = {};
+
     for (let i = 0; i < count; i++) {
         const type = types[i % types.length]; // alternate between thumb/poster
         const { w, h } = getImageSize(type);
 
         const items: CarouselItem[] = Array.from({ length: itemsPerCarousel }).map(
-            (_, idx) => ({
-                title: `Movie ${idx + 1}`,
-                imageUrl: `https://picsum.photos/seed/${type}-${i}-${idx}/${w}/${h}`,
-                description: getRandom(descriptions),
-                videoUrl:
-                    Math.random() > 0.25 ? getRandom(videoSamples) : undefined // ~25% missing video
-            })
+            (_, idx) => {
+                const hasVideo = Math.random() > 0.25; // ~25% missing video
+                let title = `Movie ${idx + 1}`;
+                let videoUrl: string | undefined = undefined;
+
+                if (hasVideo) {
+                    const videoSample = getRandom(videoSamples);
+                    videoUrl = videoSample.url;
+
+                    // Update counter for this format
+                    if (!formatCounters[videoSample.format]) {
+                        formatCounters[videoSample.format] = 0;
+                    }
+                    formatCounters[videoSample.format]++;
+
+                    // Include format in title
+                    title = `${videoSample.format} ${formatCounters[videoSample.format]}`;
+                }
+
+                const baseDescription = getRandom(descriptions);
+                const description = videoUrl
+                    ? `${baseDescription}\n\n[DEBUG] Video URL: ${videoUrl}`
+                    : baseDescription;
+
+                return {
+                    title,
+                    imageUrl: `https://picsum.photos/seed/${type}-${i}-${idx}/${w}/${h}`,
+                    description,
+                    videoUrl
+                };
+            }
         );
 
         carousels.push({
