@@ -101,7 +101,7 @@ The `ios` and `android` folders are gitignored by default as they are automatica
 - If native code modifications are necessary, remove these folders from `.gitignore`
 
 ### Authentication
-The application uses token-based authentication with automatic token refresh
+The application uses token-based authentication with automatic token refresh every time app loads, otherwise takes expiration as a logout session.
 
 ## Implementation Details
 
