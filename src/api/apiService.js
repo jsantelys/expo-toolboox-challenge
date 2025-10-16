@@ -52,7 +52,7 @@ class ApiService {
 
             if (!response.ok) {
                 const errorMessage = response.data?.message || `HTTP Error ${response.status}`;
-                console.error('API Request Error:', errorMessage);
+                console.warn('API Request Error:', errorMessage);
             }
 
             return response.data;
