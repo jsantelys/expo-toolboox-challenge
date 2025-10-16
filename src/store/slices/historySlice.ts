@@ -6,9 +6,9 @@ export interface HistoryVideo {
     videoUrl: string;
     description: string;
     imageUrl?: string;
-    watchedAt: number; // Timestamp when video was last watched
-    currentTime: number; // Current playback position in seconds
-    duration?: number; // Total video duration in seconds (optional)
+    watchedAt: number;
+    currentTime: number;
+    duration?: number;
 }
 
 interface HistoryState {
@@ -32,7 +32,6 @@ const historySlice = createSlice({
             );
 
             if (existingIndex >= 0) {
-                // Update existing history item
                 state.items[existingIndex] = {
                     ...action.payload,
                     watchedAt: Date.now(),
@@ -40,7 +39,6 @@ const historySlice = createSlice({
                     duration: state.items[existingIndex].duration,
                 };
             } else {
-                // Add new history item
                 state.items.unshift({
                     ...action.payload,
                     watchedAt: Date.now(),
@@ -83,7 +81,6 @@ export const {
 
 export default historySlice.reducer;
 
-// Selectors
 export const selectAllHistory = (state: { history: HistoryState }) =>
     state.history.items;
 
@@ -91,14 +88,12 @@ export const selectHistoryByVideoUrl = (videoUrl: string) =>
     (state: { history: HistoryState }) =>
         state.history.items.find(item => item.videoUrl === videoUrl);
 
-// Helper selector to get videos watched in the last N days
 export const selectRecentHistory = (daysAgo: number = 7) =>
     (state: { history: HistoryState }) => {
         const cutoffTime = Date.now() - daysAgo * 24 * 60 * 60 * 1000;
         return state.history.items.filter(item => item.watchedAt >= cutoffTime);
     };
 
-// Helper to format time ago
 export const getTimeAgo = (timestamp: number): string => {
     const seconds = Math.floor((Date.now() - timestamp) / 1000);
 

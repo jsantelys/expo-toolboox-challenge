@@ -46,7 +46,6 @@ export const { addBookmark, removeBookmark, clearBookmarks } =
     bookmarksSlice.actions;
 export default bookmarksSlice.reducer;
 
-// Selectors
 export const selectAllBookmarks = (state: { bookmarks: BookmarksState }) =>
     state.bookmarks.items;
 

@@ -10,23 +10,27 @@ export interface User {
 interface UserState {
     currentUser: User | null
     isAuthenticated: boolean
+    token: string | null
 }
 
 const initialState: UserState = {
     currentUser: null,
     isAuthenticated: false,
+    token: null,
 };
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<User>) => {
-            state.currentUser = action.payload
+        login: (state, action: PayloadAction<{ user: User; token: string }>) => {
+            state.currentUser = action.payload.user
+            state.token = action.payload.token
             state.isAuthenticated = true
         },
         logout: (state) => {
             state.currentUser = null
+            state.token = null
             state.isAuthenticated = false
         },
         updateUser: (state, action: PayloadAction<Partial<User>>) => {
@@ -34,13 +38,16 @@ const userSlice = createSlice({
                 state.currentUser = { ...state.currentUser, ...action.payload }
             }
         },
+        setToken: (state, action: PayloadAction<string>) => {
+            state.token = action.payload
+        },
     },
 });
 
-export const { login, logout, updateUser } = userSlice.actions
+export const { login, logout, updateUser, setToken } = userSlice.actions
 export default userSlice.reducer
 
-// Selectors
 export const selectCurrentUser = (state: { user: UserState }) => state.user.currentUser
 export const selectIsAuthenticated = (state: { user: UserState }) => state.user.isAuthenticated
+export const selectToken = (state: { user: UserState }) => state.user.token
 

@@ -1,0 +1,70 @@
+{
+    "common": {
+        "delete": "Eliminar",
+        "cancel": "Cancelar",
+        "ok": "OK",
+        "yes": "Sí",
+        "no": "No"
+    },
+    "tabs": {
+        "home": "Inicio",
+        "history": "Historial",
+        "bookmarks": "Favoritos",
+        "downloads": "Descargas",
+        "profile": "Perfil"
+    },
+    "downloads": {
+        "title": "Descargas",
+        "delete": "Eliminar",
+        "deleteTitle": "Eliminar Descarga",
+        "deleteMessage": "¿Estás seguro de que quieres eliminar esta descarga?",
+        "noDownloads": "No hay descargas aún",
+        "status": {
+            "pending": "pendiente",
+            "downloading": "descargando",
+            "completed": "completado",
+            "failed": "fallido"
+        }
+    },
+    "videoPlayer": {
+        "error": "Error",
+        "errorMessage": "Ocurrió un error al reproducir el video",
+        "retry": "Reintentar",
+        "download": "Descargar",
+        "bookmark": "Guardar"
+    },
+    "bookmarks": {
+        "title": "Favoritos",
+        "noBookmarks": "No hay favoritos aún",
+        "removeTitle": "Quitar Favorito",
+        "removeMessage": "¿Quitar este video de favoritos?"
+    },
+    "history": {
+        "title": "Historial",
+        "noHistory": "No hay historial de visualización",
+        "clear": "Limpiar Historial",
+        "clearTitle": "Limpiar Historial",
+        "clearMessage": "¿Estás seguro de que quieres limpiar todo el historial?"
+    },
+    "profile": {
+        "title": "Perfil",
+        "welcome": "Bienvenido",
+        "language": "Idioma",
+        "selectLanguage": "Selecciona tu idioma",
+        "english": "Inglés",
+        "spanish": "Español",
+        "logout": "Cerrar Sesión",
+        "logoutConfirm": "Confirmar Cierre de Sesión",
+        "logoutMessage": "¿Estás seguro de que quieres cerrar sesión?"
+    },
+    "login": {
+        "title": "Bienvenido",
+        "subtitle": "Inicia sesión para continuar",
+        "emailLabel": "Correo Electrónico",
+        "emailPlaceholder": "Ingresa tu correo",
+        "loginButton": "Iniciar Sesión",
+        "emailRequired": "El correo es obligatorio",
+        "emailInvalid": "Por favor ingresa un correo válido",
+        "error": "Error de Inicio de Sesión"
+    }
+}

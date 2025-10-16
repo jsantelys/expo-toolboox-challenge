@@ -6,29 +6,51 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NotFound } from '../screens/NotFound';
 import { VideoPlayer } from '../screens/VideoPlayer';
 import HomeTabs from './HomeTabs';
+import Login from '../screens/Login';
+import { useIsSignedIn, useIsSignedOut } from './hooks/useIsSigned';
 
 const RootStack = createNativeStackNavigator({
-    screens: {
-        HomeTabs: {
-            screen: HomeTabs,
-            options: {
-                title: 'Home',
-                headerShown: false,
+    groups: {
+        LoggedIn: {
+            if: useIsSignedIn,
+            screens: {
+                HomeTabs: {
+                    screen: HomeTabs,
+                    options: {
+                        title: 'Home',
+                        headerShown: false,
+                    },
+                },
+                VideoPlayer: {
+                    screen: VideoPlayer,
+                    options: {
+                        headerShown: false,
+                    },
+                },
+            }
+        },
+        LoggedOut: {
+            if: useIsSignedOut,
+            screens: {
+                Login: {
+                    screen: Login,
+                    options: {
+                        headerShown: false,
+                    },
+                },
             },
         },
-        VideoPlayer: {
-            screen: VideoPlayer,
-            options: {
-                headerShown: false,
-            },
-        },
-        NotFound: {
-            screen: NotFound,
-            options: {
-                title: '404',
-            },
-            linking: {
-                path: '*',
+        General: {
+            screens: {
+                NotFound: {
+                    screen: NotFound,
+                    options: {
+                        title: '404',
+                    },
+                    linking: {
+                        path: '*',
+                    },
+                },
             },
         },
     },

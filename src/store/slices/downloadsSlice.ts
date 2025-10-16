@@ -82,11 +82,19 @@ export const {
 } = downloadsSlice.actions;
 export default downloadsSlice.reducer;
 
-// Selectors
 export const selectAllDownloads = (state: { downloads: DownloadsState }) =>
     state.downloads.items;
 
 export const selectDownloadById = (id: string) =>
     (state: { downloads: DownloadsState }) =>
         state.downloads.items.find(item => item.id === id);
+
+export const selectDownloadedVideoUri = (id: string) =>
+    (state: { downloads: DownloadsState }) => {
+        const download = state.downloads.items.find(item => item.id === id);
+        return download?.status === 'completed' ? download.localUri : undefined;
+    };
+
+export const selectHasActiveDownloads = (state: { downloads: DownloadsState }) =>
+    state.downloads.items.some(item => item.status === 'downloading' || item.status === 'pending');
 

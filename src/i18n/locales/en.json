@@ -1,0 +1,70 @@
+{
+    "common": {
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "ok": "OK",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "tabs": {
+        "home": "Home",
+        "history": "History",
+        "bookmarks": "Bookmarks",
+        "downloads": "Downloads",
+        "profile": "Profile"
+    },
+    "downloads": {
+        "title": "Downloads",
+        "delete": "Delete",
+        "deleteTitle": "Delete Download",
+        "deleteMessage": "Are you sure you want to delete this download?",
+        "noDownloads": "No downloads yet",
+        "status": {
+            "pending": "pending",
+            "downloading": "downloading",
+            "completed": "completed",
+            "failed": "failed"
+        }
+    },
+    "videoPlayer": {
+        "error": "Error",
+        "errorMessage": "An error occurred while playing the video",
+        "retry": "Retry",
+        "download": "Download",
+        "bookmark": "Bookmark"
+    },
+    "bookmarks": {
+        "title": "Bookmarks",
+        "noBookmarks": "No bookmarks yet",
+        "removeTitle": "Remove Bookmark",
+        "removeMessage": "Remove this video from bookmarks?"
+    },
+    "history": {
+        "title": "History",
+        "noHistory": "No viewing history",
+        "clear": "Clear History",
+        "clearTitle": "Clear History",
+        "clearMessage": "Are you sure you want to clear all history?"
+    },
+    "profile": {
+        "title": "Profile",
+        "welcome": "Welcome",
+        "language": "Language",
+        "selectLanguage": "Select your language",
+        "english": "English",
+        "spanish": "Spanish",
+        "logout": "Logout",
+        "logoutConfirm": "Logout Confirmation",
+        "logoutMessage": "Are you sure you want to logout?"
+    },
+    "login": {
+        "title": "Welcome",
+        "subtitle": "Sign in to continue",
+        "emailLabel": "Email Address",
+        "emailPlaceholder": "Enter your email",
+        "loginButton": "Sign In",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "error": "Login Error"
+    }
+}
