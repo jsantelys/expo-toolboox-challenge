@@ -74,7 +74,6 @@ export function Home() {
                         renderItem={(props) => renderCarousel({ ...props, onPress: handlePressItem })}
                         showsVerticalScrollIndicator={false}
                         contentContainerStyle={styles.listContent}
-                        Em
                         refreshControl={
                             <RefreshControl
                                 refreshing={isLoading}
