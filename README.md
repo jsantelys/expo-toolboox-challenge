@@ -4,7 +4,7 @@ A feature-rich video streaming mobile application built with React Native and Ex
 
 ## Overview
 
-This project is a production-ready video streaming platform that enables users to browse, watch, bookmark, and download videos for offline viewing. Built with React Native and Expo, it delivers a native mobile experience on both iOS and Android platforms, with additional web support through React Native Web.
+This project is a challenge-test video streaming platform that enables users to browse, watch, bookmark, and download videos for offline viewing. Built with React Native and Expo, it delivers a native mobile experience on both iOS and Android platforms, with additional web support through React Native Web.
 
 ## Key Features
 
@@ -176,10 +176,7 @@ The `ios` and `android` folders are gitignored by default as they are automatica
 - If native code modifications are necessary, remove these folders from `.gitignore`
 
 ### Authentication
-The application uses token-based authentication with automatic token refresh. Default API endpoint:
-```
-https://echo-serv.tbxnet.com/v1/mobile
-```
+The application uses token-based authentication with automatic token refresh
 
 ## Implementation Details
 
